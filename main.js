@@ -26,3 +26,19 @@ function drawPlayer() {
     ctx.fillStyle = 'blue';
     ctx.fillRect(player.x, player.y, player.size, player.size);
 }
+function drawAI() {
+    aiPlayers.forEach(ai => {
+        ai.move();
+        ai.draw(ctx);
+    });
+}
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    updatePlayer();
+    drawPlayer();
+    drawAI();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
